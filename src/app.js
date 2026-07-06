@@ -66,6 +66,7 @@ async function app () {
                 message = '资源不存在';
                 (async () => await redisConn.set(`404:${path}`, '1', { EX: 600}))();
             }
+            console.log(err);
             return res.status(err.status ?? 500).send(message || "无法获取资源");
         }
     })
