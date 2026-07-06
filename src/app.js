@@ -18,7 +18,6 @@ async function app () {
         accessKeySecret: process.env["ACCESS_SECRET"],
         region: process.env["REGION"],
         authorizationV4: true,
-        cname: true,
         bucket: process.env["BUCKET"],
         endpoint: process.env["ENDPOINT"]
     });
@@ -48,8 +47,13 @@ async function app () {
                 }
             });
             // 用户主动关闭
-            req.on('close', () => {
-                stream.destroy();
+            req.on('close', async () => {
+                try {
+                    await stream.destroy();
+                } catch (err) {
+                    if (err.message === "stream is not defined") return;
+                    throw err;
+                }
             });
             // 代理获取文件失败
             request.stream.on('error', (err) => {
