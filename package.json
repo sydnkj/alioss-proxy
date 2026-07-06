@@ -1,0 +1,19 @@
+{
+  "name": "oss-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ali-oss": "^6.23.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "redis": "^6.0.1"
+  }
+}
